@@ -1,5 +1,5 @@
-ocemr-archive-keyring (2018.1) UNRELEASED; urgency=medium
+ocemr-archive-keyring (2018.1) buster; urgency=medium
 
-  * Initial Releas
+  * Initial Release
 
- -- Philip J. Freeman <elektron@halo.nu>  Sun, 04 Nov 2018 15:58:23 -0800
+ -- Philip J. Freeman <elektron@halo.nu>  Sun, 04 Nov 2018 17:54:12 -0800
