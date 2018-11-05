@@ -1,18 +1,5 @@
-ocemr-archive-keyring (2018.11.02) UNRELEASED; urgency=low
+ocemr-archive-keyring (2018.1) UNRELEASED; urgency=medium
 
-  * rename package to ocemr
-  * change maintainer to elektron@halo.nu
+  * Initial Releas
 
- -- Philip Freeman <elektron@halo.nu>  Fri, 02 Nov 2018 18:27:38 -0700
-
-kremlor-archive-keyring (2012.03.19squeeze1) unstable; urgency=low
-
-  * apt-key add in postinst
-
- -- Philip Freeman <philip.freeman@gmail.com>  Mon, 19 Mar 2012 14:26:20 -0500
-
-kremlor-archive-keyring (2012.03.19) unstable; urgency=low
-
-  * kremlor apt-archive keyring
-
- -- Philip Freeman <philip.freeman@gmail.com>  Mon, 19 Mar 2012 12:11:50 -0500
+ -- Philip J. Freeman <elektron@halo.nu>  Sun, 04 Nov 2018 15:58:23 -0800

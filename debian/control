@@ -1,14 +1,15 @@
 Source: ocemr-archive-keyring
-Section: misc
 Priority: important
+Section: misc
 Maintainer: Philip J. Freeman <elektron@halo.nu>
-Build-Depends: debhelper (>= 5), jetring, gnupg
-Standards-Version: 3.7.3
+Build-Depends: debhelper (>= 10), jetring, gnupg
+Rules-Requires-Root: no
+Standards-Version: 4.1.2
 
 Package: ocemr-archive-keyring
 Architecture: all
-Priority: important
-Depends: gnupg
+Multi-Arch: foreign
+Depends: ${misc:Depends}
 Description: GnuPG archive keys of the OCEMR Debian archive
- The OCEMR Debian archive digitally signs its Release files. This
- package contains the archive keys used for that.
+ The OCEMR project digitally signs its Release files. This package
+ contains the archive keys used for that.
