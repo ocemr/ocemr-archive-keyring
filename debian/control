@@ -1,14 +1,15 @@
-Source: kremlor-archive-keyring
+Source: ocemr-archive-keyring
+Priority: important
 Section: misc
-Priority: important
-Maintainer: Philip Freeman <philip.freeman@gmail.com>
-Build-Depends: debhelper (>= 5), jetring, gnupg
-Standards-Version: 3.7.3
+Maintainer: Philip J. Freeman <elektron@halo.nu>
+Build-Depends: debhelper (>= 10), jetring, gnupg
+Rules-Requires-Root: no
+Standards-Version: 4.1.2
 
-Package: kremlor-archive-keyring
+Package: ocemr-archive-keyring
 Architecture: all
-Priority: important
-Depends: gnupg
-Description: GnuPG archive keys of the kremlor.net Debian archive
- The kremlor.net Debian archive digitally signs its Release files. This
- package contains the archive keys used for that.
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: GnuPG archive keys of the OCEMR Debian archive
+ The OCEMR project digitally signs its Release files. This package
+ contains the archive keys used for that.

@@ -1,35 +1,34 @@
-build: verify-indices keyrings/kremlor-archive-keyring.gpg verify-results
+GPG_OPTIONS := --no-options --no-default-keyring --no-auto-check-trustdb --trustdb-name ./trustdb.gpg
+
+build: verify-indices verify-results
 
 verify-indices: keyrings/team-members.gpg
-	gpg --no-default-keyring --keyring keyrings/team-members.gpg \
-		--verify active-keys/index.gpg active-keys/index
-	#gpg --no-default-keyring --keyring keyrings/team-members.gpg \
-	#	--verify removed-keys/index.gpg removed-keys/index
+	gpg ${GPG_OPTIONS} \
+		--keyring keyrings/team-members.gpg \
+		--verify team-members/index.gpg team-members/index
 
-verify-results: keyrings/team-members.gpg keyrings/kremlor-archive-keyring.gpg
-	gpg --no-default-keyring --keyring keyrings/team-members.gpg --verify \
-		 keyrings/kremlor-archive-keyring.gpg.asc \
-		 keyrings/kremlor-archive-keyring.gpg
-	#gpg --no-default-keyring --keyring keyrings/team-members.gpg --verify \
-	#	 keyrings/kremlor-archive-removed-keys.gpg.asc \
-	#	 keyrings/kremlor-archive-removed-keys.gpg
-
-keyrings/kremlor-archive-keyring.gpg: active-keys/index
-	jetring-build -I $@ active-keys
-
-keyrings/kremlor-archive-removed-keys.gpg: removed-keys/index
-	jetring-build -I $@ removed-keys
+verify-results: keyrings/team-members.gpg
+	gpg ${GPG_OPTIONS} \
+		--keyring keyrings/team-members.gpg --verify \
+		keyrings/team-members.gpg.asc \
+		keyrings/team-members.gpg
 
 keyrings/team-members.gpg: team-members/index
 	jetring-build -I $@ team-members
+	gpg ${GPG_OPTIONS} --no-keyring --import-options import-export --import < $@ > $@.tmp
+	mv -f $@.tmp $@
 
 clean:
-	rm -f keyrings/kremlor-archive-keyring.gpg \
-		keyrings/kremlor-archive-keyring.gpg.lastchangeset
-	#rm -f keyrings/kremlor-archive-removed-keys.gpg \
-	#	keyrings/kremlor-archive-removed-keys.gpg.lastchangeset
 	rm -f keyrings/team-members.gpg \
+		keyrings/team-members.gpg~ \
 		keyrings/team-members.gpg.lastchangeset
+	rm -rf trustdb.gpg
+	rm -f keyrings/*.cache
 
-.PHONY: verify-indices clean
+install: build
+	install -d $(DESTDIR)/usr/share/keyrings/
+	cp keyrings/team-members.gpg $(DESTDIR)/usr/share/keyrings/ocemr-archive-keyring.gpg
+	install -d $(DESTDIR)/etc/apt/trusted.gpg.d/
+	ln  -s /usr/share/keyrings/ocemr-archive-keyring.gpg $(DESTDIR)/etc/apt/trusted.gpg.d/
 
+.PHONY: verify-indices verify-results clean build install

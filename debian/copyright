@@ -1,9 +1,7 @@
-This is kremlor.net's Debian archive GnuPG keyring.
+This is OCEMR's GnuPG keyrings of archive keys.
 
-This package is based on debian-archive-keyring.
-
-This package was originally put together by Michael Vogt
-<mvo@debian.org> 
+This package is based off of debian-archive-keyring-2018.1 which was
+originally put together by Michael Vogt <mvo@debian.org>
 
 The keys in the keyrings don't fall under any copyright.  Everything
 else in the package is covered by the GNU GPL.
